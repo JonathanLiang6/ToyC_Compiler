@@ -1,7 +1,9 @@
-(* æ ‡è¯†ç¬¦ï¼Œå°±æ˜¯å­—ç¬¦ä¸² *)
+
+
+(* ±êÊ¶·û£¬¾ÍÊÇ×Ö·û´® *)
 type ident = string
 
-(* äºŒå…ƒè¿ç®—ç¬¦ *)
+(* ¶şÔªÔËËã·û *)
 type binop =
   | Add     (* + *)
   | Sub     (* - *)
@@ -17,49 +19,49 @@ type binop =
   | And     (* && *)
   | Or      (* || *)
 
-(* ä¸€å…ƒè¿ç®—ç¬¦ *)
+(* Ò»ÔªÔËËã·û *)
 type unop =
   | Neg     (* - *)
   | Not     (* ! *)
 
-(* è¡¨è¾¾å¼ *)
+(* ±í´ïÊ½ *)
 type expr =
-  | Int of int                      (* æ•´æ•°å¸¸é‡, e.g., 10 *)
-  | Var of ident                    (* å˜é‡å¼•ç”¨, e.g., x *)
-  | UnaryOp of unop * expr          (* ä¸€å…ƒè¿ç®—, e.g., !a *)
-  | BinaryOp of binop * expr * expr (* äºŒå…ƒè¿ç®—, e.g., a + b *)
-  | Call of ident * expr list       (* å‡½æ•°è°ƒç”¨, e.g., foo(a, b) *)
+  | Int of int                      (* ÕûÊı³£Á¿, e.g., 10 *)
+  | Var of ident                    (* ±äÁ¿ÒıÓÃ, e.g., x *)
+  | UnaryOp of unop * expr          (* Ò»ÔªÔËËã, e.g., !a *)
+  | BinaryOp of binop * expr * expr (* ¶şÔªÔËËã, e.g., a + b *)
+  | Call of ident * expr list       (* º¯Êıµ÷ÓÃ, e.g., foo(a, b) *)
 
-(* è¯­å¥ *)
+(* Óï¾ä *)
 type stmt =
-  | Empty                             (* ç©ºè¯­å¥, e.g., ; *)
-  | Expr of expr                      (* è¡¨è¾¾å¼è¯­å¥, e.g., foo(); *)
-  | Block of stmt list                (* è¯­å¥å—, e.g., { ... } *)
-  | Return of expr option             (* è¿”å›è¯­å¥, e.g., return a; or return; *)
-  | If of expr * stmt * stmt option   (* if-else è¯­å¥, e.g., if (c) s1 else s2 *)
-  | While of expr * stmt              (* while å¾ªç¯, e.g., while (c) s *)
+  | Empty                             (* ¿ÕÓï¾ä, e.g., ; *)
+  | Expr of expr                      (* ±í´ïÊ½Óï¾ä, e.g., foo(); *)
+  | Block of stmt list                (* Óï¾ä¿é, e.g., { ... } *)
+  | Return of expr option             (* ·µ»ØÓï¾ä, e.g., return a; or return; *)
+  | If of expr * stmt * stmt option   (* if-else Óï¾ä, e.g., if (c) s1 else s2 *)
+  | While of expr * stmt              (* while Ñ­»·, e.g., while (c) s *)
   | Break                             (* break; *)
   | Continue                          (* continue; *)
-  | Declare of ident * expr           (* å˜é‡å£°æ˜ä¸åˆå§‹åŒ–, e.g., int a = 10; *)
-  | Assign of ident * expr            (* å˜é‡èµ‹å€¼, e.g., a = 20; *)
+  | Declare of ident * expr           (* ±äÁ¿ÉùÃ÷Óë³õÊ¼»¯, e.g., int a = 10; *)
+  | Assign of ident * expr            (* ±äÁ¿¸³Öµ, e.g., a = 20; *)
 
 
-(* å‡½æ•°è¿”å›ç±»å‹ *)
+(* º¯Êı·µ»ØÀàĞÍ *)
 type return_type =
   | Void
   | Int
 
-(* å‡½æ•°å½¢å‚ *)
+(* º¯ÊıĞÎ²Î *)
 type param =
   | Param of ident (* int a *)
 
-(* å‡½æ•°å®šä¹‰ *)
+(* º¯Êı¶¨Òå *)
 type func_def = {
   ret_type : return_type;
   name     : ident;
   params   : param list;
-  body     : stmt; (* å‡½æ•°ä½“æ€»æ˜¯ä¸€ä¸ª Block *)
+  body     : stmt; (* º¯ÊıÌå×ÜÊÇÒ»¸ö Block *)
 }
 
-(* ç¼–è¯‘å•å…ƒï¼Œå³æ•´ä¸ªç¨‹åº *)
+(* ±àÒëµ¥Ôª£¬¼´Õû¸ö³ÌĞò *)
 type comp_unit = func_def list
