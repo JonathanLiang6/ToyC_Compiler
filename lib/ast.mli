@@ -1,4 +1,3 @@
-
 (* 标识符，就是字符串 *)
 type ident = string
 
